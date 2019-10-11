@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact build-on-make="true" name="MySQL">
+    <output-path>$PROJECT_DIR$/src/main/resources/WEB-INF/lib</output-path>
+    <root id="root">
+      <element id="library" level="project" name="Maven: mysql:mysql-connector-java:8.0.17" />
+    </root>
+  </artifact>
+</component>

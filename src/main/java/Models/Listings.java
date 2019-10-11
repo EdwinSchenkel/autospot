@@ -1,0 +1,77 @@
+package Models;
+
+import javax.persistence.*;
+import java.math.BigDecimal;
+import java.sql.Date;
+
+@Entity
+@Table(name = "listings")
+public class Listings {
+    private int id;
+    private BigDecimal price;
+    private Date placementDate;
+    private Date expirationDate;
+
+    @Id
+    @Column(name = "id")
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    @Column(name = "price")
+    public BigDecimal getPrice() {
+        return price;
+    }
+
+    public void setPrice(BigDecimal price) {
+        this.price = price;
+    }
+
+    @Column(name = "placementDate")
+    public Date getPlacementDate() {
+        return placementDate;
+    }
+
+    public void setPlacementDate(Date placementDate) {
+        this.placementDate = placementDate;
+    }
+
+    @Column(name = "expirationDate")
+    public Date getExpirationDate() {
+        return expirationDate;
+    }
+
+    public void setExpirationDate(Date expirationDate) {
+        this.expirationDate = expirationDate;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Listings that = (Listings) o;
+
+        if (id != that.id) return false;
+        if (price != null ? !price.equals(that.price) : that.price != null) return false;
+        if (placementDate != null ? !placementDate.equals(that.placementDate) : that.placementDate != null)
+            return false;
+        if (expirationDate != null ? !expirationDate.equals(that.expirationDate) : that.expirationDate != null)
+            return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = id;
+        result = 31 * result + (price != null ? price.hashCode() : 0);
+        result = 31 * result + (placementDate != null ? placementDate.hashCode() : 0);
+        result = 31 * result + (expirationDate != null ? expirationDate.hashCode() : 0);
+        return result;
+    }
+}
