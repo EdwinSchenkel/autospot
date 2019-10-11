@@ -1,6 +1,7 @@
 package Business;
 
 import Helpers.DataConnection;
+import Logging.Logging;
 import Models.Users;
 
 import java.util.Date;
@@ -24,13 +25,13 @@ public class bUser {
             else
             {
                 message = "Niet alle benodigde informatie is aanwezig! | bUser.registerUser";
-                bLogging.LogMessage(message);
+                Logging.LogMessage(message);
                 return false;
             }
         }
         catch(Exception ex)
         {
-            bLogging.HandleError(ex);
+            Logging.HandleError(ex);
         }
 
         return false;

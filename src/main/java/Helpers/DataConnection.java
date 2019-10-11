@@ -1,8 +1,6 @@
 package Helpers;
 
-import Business.bLogging;
-import Models.Customer;
-import Models.Users;
+import Logging.Logging;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -40,7 +38,7 @@ public class DataConnection implements AutoCloseable {
         }
         catch(Exception ex)
         {
-            bLogging.HandleError(ex);
+            Logging.HandleError(ex);
         }
 
         return false;
