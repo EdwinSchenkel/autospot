@@ -36,4 +36,18 @@ public class bUser {
 
         return false;
     }
+
+    public boolean loginUser()
+    {
+        try(var db = new DataConnection())
+        {
+
+        }
+        catch (Exception ex)
+        {
+            Logging.HandleError(ex);
+        }
+
+        return false;
+    }
 }
