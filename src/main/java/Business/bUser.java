@@ -20,7 +20,7 @@ public class bUser {
             {
                 user.setActief(true);
                 user.setDatumGeregistreerd(new Date());
-                return db.InsertObject(user.getClass(), user);
+                return db.insertObject(user.getClass(), user);
             }
             else
             {
@@ -37,11 +37,14 @@ public class bUser {
         return false;
     }
 
-    public boolean loginUser()
+    public boolean loginUser(String userName, String password)
     {
         try(var db = new DataConnection())
         {
+            var user = db.getObjectFromQuery(new Users(), "SELECT u FROM Users u WHERE name = " + userName);
 
+            if(password.equals(user.getUserPassword()))
+                return true;
         }
         catch (Exception ex)
         {

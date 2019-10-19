@@ -20,7 +20,7 @@ public class Logging implements ICanWriteToTextFile {
             log.setMessage(ex.getMessage());
             log.setStacktrace(ExceptionUtils.getStackTrace(ex));
 
-            db.InsertObject(log.getClass(), log);
+            db.insertObject(log.getClass(), log);
         }
         catch (Exception e)
         {

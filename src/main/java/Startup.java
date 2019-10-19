@@ -1,6 +1,9 @@
 import Helpers.DataConnection;
+import Logging.Logging;
 import Models.Customer;
 import Models.Users;
+
+import java.util.ArrayList;
 import java.util.Date;
 
 public class Startup {
@@ -15,27 +18,31 @@ public class Startup {
     public static void addUser()
     {
         try(var db = new DataConnection()){
-            Users user = new Users();
-            user.setUserName("Henkooooo");
-            user.setUserPassword("Test");
-            user.setUserMail("Test@test.nl");
-            user.setDatumGeregistreerd(new Date());
-            user.setActief(true);
+            //Users user = new Users();
+            //user.setUserName("Henkooooo");
+            //user.setUserPassword("Test");
+            //user.setUserMail("Test@test.nl");
+            //user.setDatumGeregistreerd(new Date());
+            //user.setActief(true);
 
-            var data = db.InsertObject(user.getClass(), user);
-            if(data)
-                System.out.println("Gelukt");
+            //var data = db.insertObject(user.getClass(), user);
+            //if(data)
+             //   System.out.println("Gelukt");
 
 
-            Customer data2 = (Customer) db.GetObjectFromQuery(new Customer(), "SELECT u FROM Customer u WHERE Id = 1");
-
-            if(data2 != null)
-                System.out.println(data2.getAddress().getAddress());
+            //Customer data2 = db.getObjectFromQuery(new Customer(), "SELECT u FROM Customer u WHERE Id = 1");
+            var lijst = db.getListFromQuery(new Users(), "SELECT u FROM Users u");
+            System.out.println(lijst.size());
+            if(lijst != null) {
+                for(var item : lijst)
+                    System.out.println(item.getId() + " | " + item.getUserName());
+            }
         }
         catch(Exception ex){
             System.out.println(ex.getMessage());
             System.out.println("==========================================================================");
             ex.printStackTrace();
+            Logging.HandleError(ex);
         }
     }
 }

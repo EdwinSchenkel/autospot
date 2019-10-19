@@ -7,6 +7,7 @@ import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 
 import javax.persistence.TypedQuery;
+import java.util.ArrayList;
 
 public class DataConnection implements AutoCloseable {
     private Configuration con = null;
@@ -21,7 +22,7 @@ public class DataConnection implements AutoCloseable {
         this.session = this.sf.openSession();
     }
 
-    public boolean InsertObject(Class Class, Object object)
+    public boolean insertObject(Class Class, Object object)
     {
         try
         {
@@ -44,7 +45,7 @@ public class DataConnection implements AutoCloseable {
         return false;
     }
 
-    public <T> T GetObjectFromQuery(T object, String query)
+    public <T> T getObjectFromQuery(T object, String query)
     {
         var em = this.sf.createEntityManager();
         try
@@ -55,6 +56,27 @@ public class DataConnection implements AutoCloseable {
         catch (Exception ex)
         {
             ex.printStackTrace();
+            Logging.HandleError(ex);
+        }
+        finally {
+            em.close();
+        }
+
+        return null;
+    }
+
+    public <T> ArrayList<T> getListFromQuery(T object, String query)
+    {
+        var em = this.sf.createEntityManager();
+        try
+        {
+            TypedQuery<T> tq = (TypedQuery<T>) em.createQuery(query, object.getClass());
+            return (ArrayList<T>) tq.getResultList();
+        }
+        catch (Exception ex)
+        {
+            ex.printStackTrace();
+            Logging.HandleError(ex);
         }
         finally {
             em.close();
