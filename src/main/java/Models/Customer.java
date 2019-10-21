@@ -1,7 +1,5 @@
 package Models;
 
-import Interfaces.Address;
-
 import javax.persistence.*;
 
 @Entity

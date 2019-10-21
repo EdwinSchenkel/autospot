@@ -1,4 +1,4 @@
-package Interfaces;
+package Models;
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
