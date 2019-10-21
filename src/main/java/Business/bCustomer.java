@@ -1,5 +1,7 @@
 package Business;
 
+import Helpers.DataConnection;
+import Logging.Logging;
 import Models.Customer;
 
 import java.util.ArrayList;
@@ -10,15 +12,32 @@ public class bCustomer extends Customer {
 
     }
 
-    public Customer addCustomer()
+    public boolean addCustomer(Customer cust)
     {
+        try(var db = new DataConnection())
+        {
+            var result = db.insertObject(cust.getClass(), cust);
+            return result;
+        }
+        catch (Exception ex)
+        {
+            Logging.HandleError(ex);
+        }
 
-        return null;
+        return false;
     }
 
-    public Customer getCustomer()
+    public Customer getCustomer(int id)
     {
-
+        try (var db = new DataConnection())
+        {
+            var cust = db.getObjectFromQuery(new Customer(), "SELECT c FROM Customer WHERE Id = " + id);
+            return cust;
+        }
+        catch (Exception ex)
+        {
+            Logging.HandleError(ex);
+        }
         return null;
     }
 

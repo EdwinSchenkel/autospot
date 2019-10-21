@@ -12,5 +12,10 @@
         <!-- Zet hier de klassen van de database -->
         <mapping class="Models.Users"></mapping>
         <mapping class="Models.Customer"></mapping>
+        <mapping class="Models.Bids"></mapping>
+        <mapping class="Models.Cars"></mapping>
+        <mapping class="Models.Companies"></mapping>
+        <mapping class="Models.Errorlogging"></mapping>
+        <mapping class="Models.Listings"></mapping>
     </session-factory>
 </hibernate-configuration>

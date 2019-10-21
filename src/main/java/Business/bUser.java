@@ -6,12 +6,8 @@ import Models.Users;
 
 import java.util.Date;
 
-public class bUser {
-    public bUser()
-    {
-
-    }
-
+public class bUser
+{
     public boolean registerUser(Users user, String message)
     {
         try (var db = new DataConnection())

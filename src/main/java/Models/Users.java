@@ -22,6 +22,8 @@ public class Users {
     private Date datumGeregistreerd;
     @Column(name = "Actief", nullable = false)
     private boolean actief;
+    @Column(name = "isAdmin", nullable = false)
+    private boolean isAdmin;
 
     public int getId() {
         return id;
@@ -69,5 +71,13 @@ public class Users {
 
     public void setActief(boolean actief) {
         this.actief = actief;
+    }
+
+    public boolean isAdmin() {
+        return isAdmin;
+    }
+
+    public void setAdmin(boolean admin) {
+        isAdmin = admin;
     }
 }
