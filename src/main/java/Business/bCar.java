@@ -36,6 +36,16 @@ public class bCar
 
     public boolean deleteCar(int id)
     {
+        try (var db = new DataConnection())
+        {
+            var item = db.getObjectFromQuery(new Cars(), "SELECT c FROM Cars c WHERE Id = " + id);
+            return db.deleteItem(item);
+        }
+        catch (Exception ex)
+        {
+            Logging.HandleError(ex);
+        }
+
         return false;
     }
 

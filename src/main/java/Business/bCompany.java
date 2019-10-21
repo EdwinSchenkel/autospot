@@ -65,6 +65,16 @@ public class bCompany
 
     public boolean deleteCompany(int id)
     {
+        try (var db = new DataConnection())
+        {
+            var item = db.getObjectFromQuery(new Companies(), "SELECT c FROM Companies c WHERE Id = " + id);
+            return db.deleteItem(item);
+        }
+        catch (Exception ex)
+        {
+            Logging.HandleError(ex);
+        }
+
         return false;
     }
 }

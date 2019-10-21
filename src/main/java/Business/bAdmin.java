@@ -18,6 +18,21 @@ public class bAdmin
         }
     }
 
+    public boolean deleteUser(int id)
+    {
+        try (var db = new DataConnection())
+        {
+            var item = db.getObjectFromQuery(new Users(), "SELECT u FROM Users u WHERE Id = " + id);
+            return db.deleteItem(item);
+        }
+        catch (Exception ex)
+        {
+            Logging.HandleError(ex);
+        }
+
+        return false;
+    }
+
     public boolean isAdmin(int id)
     {
         try(var db = new DataConnection())

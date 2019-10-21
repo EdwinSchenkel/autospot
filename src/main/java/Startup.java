@@ -1,3 +1,4 @@
+import Business.bAdmin;
 import Business.bUser;
 import Helpers.DataConnection;
 import Logging.Logging;
@@ -15,6 +16,8 @@ public class Startup {
         System.out.println("Start");
         var usr = new bUser();
         usr.loginUser("Test", "testPw");
+        var admin = new bAdmin();
+        admin.deleteUser(51);
         addUser();
         System.out.println("Stop");
 

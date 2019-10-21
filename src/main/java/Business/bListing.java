@@ -65,6 +65,16 @@ public class bListing
 
     public boolean deleteListing(int id)
     {
+        try (var db = new DataConnection())
+        {
+            var item = db.getObjectFromQuery(new Listings(), "SELECT l FROM Listings l WHERE Id = " + id);
+            return db.deleteItem(item);
+        }
+        catch (Exception ex)
+        {
+            Logging.HandleError(ex);
+        }
+
         return false;
     }
 

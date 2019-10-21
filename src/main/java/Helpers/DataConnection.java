@@ -119,10 +119,11 @@ public class DataConnection implements AutoCloseable, ICanWriteToTextFile {
         return null;
     }
 
-    public void deleteItem(Object object)
+    public boolean deleteItem(Object object)
     {
         try
         {
+            if(object == null) return false;
             // Stel de juiste class in
             this.con.addAnnotatedClass(object.getClass());
 
@@ -130,12 +131,16 @@ public class DataConnection implements AutoCloseable, ICanWriteToTextFile {
             Transaction tx = this.session.beginTransaction();
             this.session.remove(object);
             tx.commit();
+            // TODO: controleren of item ook echt uit db is
+            return true;
         }
         catch (Exception ex)
         {
             ex.printStackTrace();
             Logging.HandleError(ex, this);
         }
+
+        return false;
     }
 
     @Override
