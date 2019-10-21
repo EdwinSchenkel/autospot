@@ -8,6 +8,7 @@ public class Errorlogging {
     private int id;
     private String message;
     private String stacktrace;
+    private int userId;
 
     @Id
     @Column(name = "id")
@@ -35,6 +36,15 @@ public class Errorlogging {
 
     public void setStacktrace(String stacktrace) {
         this.stacktrace = stacktrace;
+    }
+
+    @Column(name = "userId")
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 
     @Override

@@ -2,6 +2,8 @@ import Helpers.DataConnection;
 import Logging.Logging;
 import Models.Customer;
 import Models.Users;
+import org.apache.commons.lang3.NotImplementedException;
+import org.apache.commons.lang3.exception.ExceptionUtils;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -31,11 +33,13 @@ public class Startup {
 
 
             //Customer data2 = db.getObjectFromQuery(new Customer(), "SELECT u FROM Customer u WHERE Id = 1");
-            var lijst = db.getListFromQuery(new Users(), "SELECT u FROM Users u");
-            System.out.println(lijst.size());
+            var lijst = db.getObjectFromQuery(new Users(), "SELECT u FROM Users u WHERE Id = 52");
+            //System.out.println(lijst.size());
             if(lijst != null) {
-                for(var item : lijst)
-                    System.out.println(item.getId() + " | " + item.getUserName());
+                System.out.println(lijst.getId() + " | " + lijst.getUserName());
+                db.deleteItem(lijst);
+                //for(var item : lijst)
+                //    System.out.println(item.getId() + " | " + item.getUserName());
             }
         }
         catch(Exception ex){
