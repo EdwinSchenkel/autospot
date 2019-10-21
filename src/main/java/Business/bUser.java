@@ -39,8 +39,7 @@ public class bUser
         {
             var user = db.getObjectFromQuery(new Users(), "SELECT u FROM Users u WHERE name = " + userName);
 
-            if(password.equals(user.getUserPassword()))
-                return true;
+            return password.equals(user.getUserPassword());
         }
         catch (Exception ex)
         {

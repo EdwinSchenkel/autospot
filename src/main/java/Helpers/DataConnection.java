@@ -10,9 +10,9 @@ import javax.persistence.TypedQuery;
 import java.util.ArrayList;
 
 public class DataConnection implements AutoCloseable {
-    private Configuration con = null;
-    private SessionFactory sf = null;
-    private Session session = null;
+    private Configuration con;
+    private SessionFactory sf;
+    private Session session;
 
     // Stel de closeables in
     public DataConnection()
@@ -51,7 +51,7 @@ public class DataConnection implements AutoCloseable {
         try
         {
             TypedQuery<T> tq = (TypedQuery<T>) em.createQuery(query, object.getClass());
-            return  (T) tq.getSingleResult();
+            return tq.getSingleResult();
         }
         catch (Exception ex)
         {
@@ -86,7 +86,7 @@ public class DataConnection implements AutoCloseable {
     }
 
     @Override
-    public void close() throws Exception {
+    public void close() {
         this.session.close();
         this.sf.close();
     }

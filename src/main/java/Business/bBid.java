@@ -9,16 +9,43 @@ public class bBid
 {
     public boolean placeBid(Bids bid)
     {
+        try (var db = new DataConnection())
+        {
+            return db.insertObject(bid.getClass(), bid);
+        }
+        catch (Exception ex)
+        {
+            Logging.HandleError(ex);
+        }
         return false;
     }
 
-    public void changeBidStatus(int status)
+    public void changeBidStatus(int status, Bids bid)
     {
+        if(bid == null || bid.getStatus() == status) return;
 
+        try (var db = new DataConnection())
+        {
+            bid.setStatus(status);
+            db.insertObject(bid.getClass(), bid);
+        }
+        catch (Exception ex)
+        {
+            Logging.HandleError(ex);
+        }
     }
 
     public ArrayList<Bids> getBidsForListing(int listingId)
     {
+        try (var db = new DataConnection())
+        {
+            return db.getListFromQuery(new Bids(), "SELECT b FROM Bids b JOIN Listings l ON b.listingId = l.Id WHERE l.Id = " + listingId);
+        }
+        catch (Exception ex)
+        {
+            Logging.HandleError(ex);
+        }
+
         return new ArrayList<>();
     }
 
@@ -26,8 +53,7 @@ public class bBid
     {
         try(var db = new DataConnection())
         {
-            var bidsList = db.getListFromQuery(new Bids(), "SELECT bid FROM bids bid");
-            return bidsList;
+            return db.getListFromQuery(new Bids(), "SELECT bid FROM bids bid");
         }
         catch (Exception ex)
         {
@@ -41,8 +67,7 @@ public class bBid
     {
         try(var db = new DataConnection())
         {
-            var bid = db.getObjectFromQuery(new Bids(), "SELECT bid FROM bids bid WHERE id = " + id);
-            return bid;
+            return db.getObjectFromQuery(new Bids(), "SELECT bid FROM bids bid WHERE id = " + id);
         }
         catch (Exception ex)
         {

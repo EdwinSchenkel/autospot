@@ -12,8 +12,7 @@ public class bCar
     {
         try(var db = new DataConnection())
         {
-            var result = db.insertObject(car.getClass(), car);
-            return result;
+            return db.insertObject(car.getClass(), car);
         }
         catch (Exception ex)
         {
@@ -25,7 +24,14 @@ public class bCar
 
     public void editCar(Cars car)
     {
-
+        try (var db = new DataConnection())
+        {
+            db.insertObject(car.getClass(), car);
+        }
+        catch (Exception ex)
+        {
+            Logging.HandleError(ex);
+        }
     }
 
     public boolean deleteCar(int id)
@@ -37,8 +43,7 @@ public class bCar
     {
         try(var db = new DataConnection())
         {
-            var result = db.getObjectFromQuery(new Cars(), "SELECT c FROM Cars WHERE Id = " + id);
-            return result;
+            return db.getObjectFromQuery(new Cars(), "SELECT c FROM Cars c WHERE Id = " + id);
         }
         catch (Exception ex)
         {
@@ -51,8 +56,7 @@ public class bCar
     {
         try(var db = new DataConnection())
         {
-            var result = db.getListFromQuery(new Cars(), "SELECT c FROM Cars");
-            return result;
+            return db.getListFromQuery(new Cars(), "SELECT c FROM Cars c");
         }
         catch (Exception ex)
         {
@@ -65,8 +69,7 @@ public class bCar
     {
         try(var db = new DataConnection())
         {
-            var result = db.getListFromQuery(new Cars(), "SELECT c FROM Cars WHERE brand LIKE '%" + searchQuery + "%'");
-            return result;
+            return db.getListFromQuery(new Cars(), "SELECT c FROM Cars c WHERE brand LIKE '%" + searchQuery + "%'");
         }
         catch (Exception ex)
         {
