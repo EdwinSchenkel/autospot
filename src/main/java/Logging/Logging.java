@@ -1,5 +1,6 @@
 package Logging;
 
+import Business.bUser;
 import Helpers.DataConnection;
 import Interfaces.ICanWriteToTextFile;
 import Models.Errorlogging;
@@ -7,7 +8,8 @@ import org.apache.commons.lang3.exception.ExceptionUtils;
 
 import java.io.File;
 
-public class Logging implements ICanWriteToTextFile {
+public class Logging implements ICanWriteToTextFile
+{
     public static void LogMessage(String message)
     {
 
@@ -36,7 +38,7 @@ public class Logging implements ICanWriteToTextFile {
             var log = new Errorlogging();
             log.setMessage(ex.getMessage());
             log.setStacktrace(ExceptionUtils.getStackTrace(ex));
-            log.setUserId(1);
+            log.setUserId(bUser.UserLoggedIn.getId());
 
             db.insertObject(log.getClass(), log);
         }

@@ -1,3 +1,4 @@
+import Business.bUser;
 import Helpers.DataConnection;
 import Logging.Logging;
 import Models.Customer;
@@ -12,6 +13,8 @@ public class Startup {
     public static void main(String[] args)
     {
         System.out.println("Start");
+        var usr = new bUser();
+        usr.loginUser("Test", "testPw");
         addUser();
         System.out.println("Stop");
 

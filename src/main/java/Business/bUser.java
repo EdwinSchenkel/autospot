@@ -8,6 +8,8 @@ import java.util.Date;
 
 public class bUser
 {
+    public static Users UserLoggedIn;
+
     public boolean registerUser(Users user, String message)
     {
         try (var db = new DataConnection())
@@ -37,9 +39,15 @@ public class bUser
     {
         try(var db = new DataConnection())
         {
-            var user = db.getObjectFromQuery(new Users(), "SELECT u FROM Users u WHERE name = " + userName);
+            var user = db.getObjectFromQuery(new Users(), "SELECT u FROM Users u WHERE name = '" + userName + "'");
 
-            return password.equals(user.getUserPassword());
+            if(password.equals(user.getUserPassword()))
+            {
+                UserLoggedIn = user;
+                return true;
+            }
+
+            if(UserLoggedIn != null) UserLoggedIn = null;
         }
         catch (Exception ex)
         {
@@ -47,5 +55,10 @@ public class bUser
         }
 
         return false;
+    }
+
+    public void logoutUser()
+    {
+        UserLoggedIn = null;
     }
 }
