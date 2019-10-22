@@ -12,7 +12,7 @@ import java.nio.file.Paths;
 public class FileWriterHelper implements ICanWriteToTextFile
 {
     @Override
-    public File OpenFile(String fileName)
+    public File OpenFile(String fileName) throws IOException
     {
         File check = new File(sourcePath);
         if(!check.exists() && !check.isDirectory())
@@ -21,22 +21,19 @@ public class FileWriterHelper implements ICanWriteToTextFile
         File f = new File(Paths.get(sourcePath, fileName).toString());
         if(f.exists())
             return f;
-
-        return null;
+        else
+        {
+            f.createNewFile();
+            return f;
+        }
     }
 
     @Override
-    public void WriteToFile(String fileContent) throws IOException {
-        String fileName = "test.json";
-        var f = OpenFile(fileName);
-        if(f == null)
-        {
-            System.out.println(Paths.get(sourcePath, fileName).toString());
-            f = new File(Paths.get(sourcePath, fileName).toString());
-            f.createNewFile();
-        }
+    public void WriteToFile(File file, String fileContent) throws IOException
+    {
+        if(file == null) throw new IllegalStateException("Geen file om naartoe te schrijven!");
 
-        try (var writer = new FileWriter(f))
+        try (var writer = new FileWriter(file))
         {
             writer.write(fileContent);
             writer.flush();

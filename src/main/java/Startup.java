@@ -47,13 +47,14 @@ public class Startup {
             var json = JsonHelper.toJson(lijst);
             var helper = new FileWriterHelper();
             var data = helper.OpenFile("test.json");
-            helper.FileContentToString(data);
+            var dat = JsonHelper.fromJson(data, new Users());
+            System.out.println(dat.getUserName());
             //helper.WriteToFile(json);
             //var dat = mapper.readValue(json, lijst.getClass());
             var obj = JsonHelper.fromJson(json, new Users());
             //var js = JsonHelper.toJson(obj);
             //System.out.println(js);
-            System.out.println(obj.getUserName());
+            //System.out.println(obj.getUserName());
             //System.out.println(json);
             //System.out.println(lijst.size());
             if(lijst != null) {

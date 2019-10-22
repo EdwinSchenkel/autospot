@@ -9,12 +9,16 @@ import org.hibernate.cfg.Configuration;
 
 import javax.persistence.TypedQuery;
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class DataConnection implements AutoCloseable, ICanWriteToTextFile {
     private Configuration con;
     private SessionFactory sf;
     private Session session;
+
+    private FileWriterHelper fwHelper;
 
     public Configuration getCon() {
         return con;
@@ -143,6 +147,25 @@ public class DataConnection implements AutoCloseable, ICanWriteToTextFile {
         return false;
     }
 
+    public void WriteMessageToLogging(String message)
+    {
+        fwHelper = new FileWriterHelper();
+
+        try {
+            var file = OpenFile("dataconnection.txt");
+            var currentContent = fwHelper.FileContentToString(file);
+            String msg = new Date() + " | MESSAGE : " + message + "\n";
+            if(currentContent != null)
+                msg = currentContent + msg;
+            WriteToFile(file, msg);
+        }
+        catch (Exception ex)
+        {
+            ex.printStackTrace();
+        }
+
+    }
+
     @Override
     public void close() {
         this.session.close();
@@ -150,12 +173,14 @@ public class DataConnection implements AutoCloseable, ICanWriteToTextFile {
     }
 
     @Override
-    public File OpenFile(String fileName) {
-        return null;
+    public File OpenFile(String fileName) throws IOException {
+        if(fwHelper == null) return null;
+
+        return fwHelper.OpenFile(fileName);
     }
 
     @Override
-    public void WriteToFile(String fileContent) {
+    public void WriteToFile(File file, String fileContent) {
 
     }
 }
