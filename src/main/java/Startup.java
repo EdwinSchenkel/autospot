@@ -1,9 +1,12 @@
 import Business.bAdmin;
 import Business.bUser;
 import Helpers.DataConnection;
+import Helpers.FileWriterHelper;
+import Helpers.JsonHelper;
 import Logging.Logging;
 import Models.Customer;
 import Models.Users;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.commons.lang3.NotImplementedException;
 import org.apache.commons.lang3.exception.ExceptionUtils;
 
@@ -39,11 +42,23 @@ public class Startup {
 
 
             //Customer data2 = db.getObjectFromQuery(new Customer(), "SELECT u FROM Customer u WHERE Id = 1");
-            var lijst = db.getObjectFromQuery(new Users(), "SELECT u FROM Users u WHERE Id = 52");
+            var lijst = db.getObjectFromQuery(new Users(), "SELECT u FROM Users u WHERE Id = 50");
+
+            var json = JsonHelper.toJson(lijst);
+            var helper = new FileWriterHelper();
+            var data = helper.OpenFile("test.json");
+            helper.FileContentToString(data);
+            //helper.WriteToFile(json);
+            //var dat = mapper.readValue(json, lijst.getClass());
+            var obj = JsonHelper.fromJson(json, new Users());
+            //var js = JsonHelper.toJson(obj);
+            //System.out.println(js);
+            System.out.println(obj.getUserName());
+            //System.out.println(json);
             //System.out.println(lijst.size());
             if(lijst != null) {
-                System.out.println(lijst.getId() + " | " + lijst.getUserName());
-                db.deleteItem(lijst);
+                //System.out.println(lijst.getId() + " | " + lijst.getUserName());
+                //db.deleteItem(lijst);
                 //for(var item : lijst)
                 //    System.out.println(item.getId() + " | " + item.getUserName());
             }

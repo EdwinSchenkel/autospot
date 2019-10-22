@@ -22,6 +22,7 @@ public class Logging implements ICanWriteToTextFile
             var log = new Errorlogging();
             log.setMessage(ex.getMessage());
             log.setStacktrace(ExceptionUtils.getStackTrace(ex));
+            log.setUserId(bUser.UserLoggedIn.getId());
 
             db.insertObject(log.getClass(), log);
         }
@@ -59,7 +60,7 @@ public class Logging implements ICanWriteToTextFile
     }
 
     @Override
-    public void WriteToFile(File file) {
+    public void WriteToFile(String fileContent) {
 
     }
 }

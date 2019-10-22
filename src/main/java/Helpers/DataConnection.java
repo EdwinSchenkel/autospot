@@ -155,7 +155,7 @@ public class DataConnection implements AutoCloseable, ICanWriteToTextFile {
     }
 
     @Override
-    public void WriteToFile(File file) {
+    public void WriteToFile(String fileContent) {
 
     }
 }
