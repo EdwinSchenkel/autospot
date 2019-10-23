@@ -12,6 +12,8 @@ public class Bids {
     private Date date;
     private String note;
     private int status;
+    private Listings listing;
+    private int listingId;
 
     @Id
     @Column(name = "id")
@@ -57,6 +59,15 @@ public class Bids {
 
     public void setStatus(int status) {
         this.status = status;
+    }
+
+    @Column(name = "listingId")
+    public int getListingId() {
+        return listingId;
+    }
+
+    public void setListingId(int listingId) {
+        this.listingId = listingId;
     }
 
     @Override

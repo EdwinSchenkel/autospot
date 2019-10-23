@@ -24,6 +24,7 @@ public class Cars {
     private String fuelType;
     private int mileage;
     private String options;
+    private int customerId;
 
     @Id
     @Column(name = "id")
@@ -177,6 +178,15 @@ public class Cars {
 
     public void setOptions(String options) {
         this.options = options;
+    }
+
+    @Column(name = "customerId")
+    public int getCustomerId() {
+        return customerId;
+    }
+
+    public void setCustomerId(int CustomerId) {
+        this.customerId = CustomerId;
     }
 
     @Override

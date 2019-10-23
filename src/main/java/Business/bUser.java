@@ -57,6 +57,20 @@ public class bUser
         return false;
     }
 
+    public Users getUser(int Id)
+    {
+        try(var db = new DataConnection())
+        {
+            return db.getObjectFromQuery(new Users(), "SELECT u FROM Users u WHERE Id = " + Id);
+        }
+        catch (Exception ex)
+        {
+            Logging.HandleError(ex);
+        }
+
+        return null;
+    }
+
     public void logoutUser()
     {
         UserLoggedIn = null;

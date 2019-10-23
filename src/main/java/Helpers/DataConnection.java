@@ -2,6 +2,7 @@ package Helpers;
 
 import Interfaces.ICanWriteToTextFile;
 import Logging.Logging;
+import org.apache.commons.beanutils.BeanUtils;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -57,6 +58,31 @@ public class DataConnection implements AutoCloseable, ICanWriteToTextFile {
         this.con = db.getCon();
         this.sf = db.getSf();
         this.session = db.getSession();
+    }
+
+    public boolean editObject(Class Class, Object object, int Id)
+    {
+        try
+        {
+            // Stel de juiste class in
+            this.con.addAnnotatedClass(Class);
+
+            // Begin transactie
+            Transaction tx = this.session.beginTransaction();
+            var obj = session.find(Class, Id);
+            BeanUtils.copyProperties(obj, object);
+            this.session.save(obj);
+            tx.commit();
+
+            // Geen exceptie? Return dan true;
+            return true;
+        }
+        catch(Exception ex)
+        {
+            Logging.HandleError(ex, this);
+        }
+
+        return false;
     }
 
     public boolean insertObject(Class Class, Object object)

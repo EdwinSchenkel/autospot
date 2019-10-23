@@ -10,7 +10,7 @@ public class bAdmin
     {
         try (var db = new DataConnection())
         {
-            db.insertObject(user.getClass(), user);
+            db.editObject(user.getClass(), user, user.getId());
         }
         catch (Exception ex)
         {
