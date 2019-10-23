@@ -78,7 +78,7 @@ public class Logging
             if(currentContent != null) listLogging.add(log);
 
             var content = JsonHelper.toJson(log);
-            
+
             fwHelper.WriteToFile(file, content);
         }
         catch (IOException e)
