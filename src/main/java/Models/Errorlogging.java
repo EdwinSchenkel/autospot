@@ -8,7 +8,7 @@ public class Errorlogging {
     private int id;
     private String message;
     private String stacktrace;
-    private int userId;
+    private Integer userId;
 
     @Id
     @Column(name = "id")
@@ -39,11 +39,11 @@ public class Errorlogging {
     }
 
     @Column(name = "userId")
-    public int getUserId() {
+    public Integer getUserId() {
         return userId;
     }
 
-    public void setUserId(int userId) {
+    public void setUserId(Integer userId) {
         this.userId = userId;
     }
 

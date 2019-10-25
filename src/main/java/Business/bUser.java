@@ -4,6 +4,7 @@ import Helpers.DataConnection;
 import Logging.Logging;
 import Models.Users;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 public class bUser
@@ -62,10 +63,24 @@ public class bUser
     }
 
     public Users getUser(int Id)
+{
+    try(var db = new DataConnection())
+    {
+        return db.getObjectFromQuery(new Users(), "SELECT u FROM Users u WHERE Id = " + Id);
+    }
+    catch (Exception ex)
+    {
+        Logging.HandleError(ex);
+    }
+
+    return null;
+}
+
+    public ArrayList<Users> getAllUsers()
     {
         try(var db = new DataConnection())
         {
-            return db.getObjectFromQuery(new Users(), "SELECT u FROM Users u WHERE Id = " + Id);
+            return db.getListFromQuery(new Users(), "SELECT u FROM Users u");
         }
         catch (Exception ex)
         {

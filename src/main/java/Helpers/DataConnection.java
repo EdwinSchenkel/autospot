@@ -96,7 +96,6 @@ public class DataConnection implements AutoCloseable, ICanWriteToTextFile {
             Transaction tx = this.session.beginTransaction();
             this.session.save(object);
             tx.commit();
-
             // Geen exceptie? Return dan true;
             return true;
         }
@@ -121,10 +120,6 @@ public class DataConnection implements AutoCloseable, ICanWriteToTextFile {
             ex.printStackTrace();
             Logging.HandleError(ex, this);
         }
-        finally
-        {
-            em.close();
-        }
 
         return null;
     }
@@ -141,9 +136,6 @@ public class DataConnection implements AutoCloseable, ICanWriteToTextFile {
         {
             ex.printStackTrace();
             Logging.HandleError(ex, this);
-        }
-        finally {
-            em.close();
         }
 
         return null;

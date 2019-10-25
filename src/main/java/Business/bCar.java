@@ -79,7 +79,7 @@ public class bCar
     {
         try(var db = new DataConnection())
         {
-            return db.getListFromQuery(new Cars(), "SELECT c FROM Cars c WHERE brand LIKE '%" + searchQuery + "%'");
+            return db.getListFromQuery(new Cars(), "SELECT c FROM Cars c WHERE (brand LIKE '%" + searchQuery + "%' OR color LIKE '%" + searchQuery + "%' OR varnish LIKE '" + searchQuery + "')");
         }
         catch (Exception ex)
         {
