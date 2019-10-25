@@ -17,9 +17,8 @@ public class Customer {
     private String middleName;
     @Column(name = "lastName")
     private String lastName;
-    @OneToOne
-    @JoinColumn(name = "userId")
-    private Users user;
+    @Column(name = "userId")
+    private int userId;
     private Address address;
 
     public int getCustomerId() {
@@ -54,12 +53,12 @@ public class Customer {
         this.lastName = lastName;
     }
 
-    public Users getUser() {
-        return user;
+    public int getUserId() {
+        return userId;
     }
 
-    public void setUser(Users user) {
-        this.user = user;
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 
     public Address getAddress() {

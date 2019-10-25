@@ -12,7 +12,6 @@ public class Bids {
     private Date date;
     private String note;
     private int status;
-    private Listings listing;
     private int listingId;
 
     @Id

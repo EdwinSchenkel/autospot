@@ -11,6 +11,7 @@ public class Listings {
     private BigDecimal price;
     private Date placementDate;
     private Date expirationDate;
+    private int carId;
 
     @Id
     @Column(name = "id")
@@ -47,6 +48,15 @@ public class Listings {
 
     public void setExpirationDate(Date expirationDate) {
         this.expirationDate = expirationDate;
+    }
+
+    @Column(name = "carId")
+    public int getCarId() {
+        return carId;
+    }
+
+    public void setCarId(int carId) {
+        this.carId = carId;
     }
 
     @Override

@@ -173,7 +173,7 @@ public class DataConnection implements AutoCloseable, ICanWriteToTextFile {
         return false;
     }
 
-    public void WriteMessageToLogging(String message)
+    private void WriteMessageToLogging(String message)
     {
         fwHelper = new FileWriterHelper();
 
