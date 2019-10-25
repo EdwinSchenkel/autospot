@@ -82,7 +82,7 @@ public class bListing
     {
         try (var db = new DataConnection())
         {
-            db.insertObject(listing.getClass(), listing);
+            db.editObject(listing.getClass(), listing, listing.getId());
         }
         catch (Exception ex)
         {

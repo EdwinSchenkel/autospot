@@ -26,7 +26,7 @@ public class bCar
     {
         try (var db = new DataConnection())
         {
-            db.insertObject(car.getClass(), car);
+            db.editObject(car.getClass(), car, car.getId());
         }
         catch (Exception ex)
         {

@@ -27,7 +27,7 @@ public class bBid
         try (var db = new DataConnection())
         {
             bid.setStatus(status);
-            db.insertObject(bid.getClass(), bid);
+            db.editObject(bid.getClass(), bid, bid.getId());
         }
         catch (Exception ex)
         {
@@ -83,7 +83,7 @@ public class bBid
 
         try(var db = new DataConnection())
         {
-            db.insertObject(bid.getClass(), bid);
+            db.editObject(bid.getClass(), bid, bid.getId());
         }
         catch (Exception ex)
         {

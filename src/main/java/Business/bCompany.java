@@ -27,7 +27,7 @@ public class bCompany
     {
         try (var db = new DataConnection())
         {
-            db.insertObject(company.getClass(), company);
+            db.editObject(company.getClass(), company, company.getId());
         }
         catch (Exception ex)
         {
