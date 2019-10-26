@@ -12,8 +12,7 @@ public class bCompany
     {
         try (var db = new DataConnection())
         {
-            var result = db.insertObject(company.getClass(), company);
-            return result;
+            return db.insertObject(company.getClass(), company);
         }
         catch (Exception ex)
         {
@@ -53,7 +52,7 @@ public class bCompany
     {
         try (var db = new DataConnection())
         {
-            return db.getObjectFromQuery(new Companies(), "SELECT c FROM Companies WHERE Id = " + id);
+            return db.getObjectFromQuery(new Companies(), "SELECT c FROM Companies c WHERE Id = " + id);
         }
         catch (Exception ex)
         {

@@ -42,7 +42,7 @@ public class bCustomer
         try (var db = new DataConnection())
         {
             if (actief != null)
-                custList = db.getListFromQuery(new Customer(), "SELECT c FROM Customer c JOIN Users u ON c.userId = c.Id WHERE c.Actief = '" + actief + "'");
+                custList = db.getListFromQuery(new Customer(), "SELECT c FROM Customer c JOIN Users u ON c.userId = u.id WHERE u.actief = " + (actief ? 1 : 0));
             else
                 custList = db.getListFromQuery(new Customer(), "SELECT c FROM Customer c");
 

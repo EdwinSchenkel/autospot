@@ -1,6 +1,5 @@
 package Models;
 
-import javax.persistence.Column;
 import javax.persistence.Embeddable;
 
 @Embeddable
@@ -31,12 +30,12 @@ public class Address {
         this.address = address;
     }
 
-    public String getPostalCode() {
+    public String getZipcode() {
         return zipcode;
     }
 
-    public void setPostalCode(String postalCode) {
-        this.zipcode = postalCode;
+    public void setZipcode(String zipcode) {
+        this.zipcode = zipcode;
     }
 
     public String getCity() {
