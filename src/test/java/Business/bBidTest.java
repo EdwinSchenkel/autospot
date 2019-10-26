@@ -23,7 +23,8 @@ class bBidTest {
     void placeBid() {
         // Arrange
         var item = new Bids();
-        item.setListingId(1);
+        var listing = new bListing().getAllListings().get(0);
+        item.setListingId(listing.getId());
         item.setDate(new Date(System.currentTimeMillis()));
         item.setNote("Graag gauw kopen.");
         item.setPrice(new BigDecimal("500.53"));
@@ -37,22 +38,14 @@ class bBidTest {
     }
 
     @Test
-    void changeBidStatus() {
-    }
-
-    @Test
     void getBidsForListing() {
-    }
+        // Arrange
+        var listing = new bListing().getAllListings().get(0);
 
-    @Test
-    void getAllBids() {
-    }
+        // Act
+        var result = objBid.getBidsForListing(listing.getId());
 
-    @Test
-    void getBid() {
-    }
-
-    @Test
-    void editBid() {
+        // Assert
+        assertTrue(result.size() > 0);
     }
 }

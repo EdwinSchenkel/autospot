@@ -39,7 +39,7 @@ public class bBid
     {
         try (var db = new DataConnection())
         {
-            return db.getListFromQuery(new Bids(), "SELECT b FROM Bids b JOIN Listings l ON b.listingId = l.Id WHERE l.Id = " + listingId);
+            return db.getListFromQuery(new Bids(), "SELECT b FROM Bids b JOIN Listings l ON b.listingId = l.id WHERE l.id = " + listingId);
         }
         catch (Exception ex)
         {

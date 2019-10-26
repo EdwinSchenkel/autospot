@@ -138,7 +138,7 @@ public class DataConnection implements AutoCloseable, ICanWriteToTextFile {
             Logging.HandleError(ex, this);
         }
 
-        return null;
+        return new ArrayList<>();
     }
 
     public boolean deleteItem(Object object)

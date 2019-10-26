@@ -53,7 +53,7 @@ public class bListing
     {
         try(var db = new DataConnection())
         {
-            return db.getListFromQuery(new Listings(), "SELECT l FROM Listings l JOIN Cars c ON l.carId = c.Id WHERE c.type LIKE '%" + carType + "%'");
+            return db.getListFromQuery(new Listings(), "SELECT l FROM Listings l JOIN Cars c ON l.carId = c.id WHERE c.type LIKE '%" + carType + "%'");
         }
         catch (Exception ex)
         {
