@@ -114,6 +114,7 @@ public class HomeController implements Initializable {
         bid.setDate(new Date(System.currentTimeMillis()));
         bid.setStatus(0);
         bid.setPrice(new BigDecimal(price));
+        bid.setNote("Test");
         bid.setListingId(new bListing().getMostRecentByCarId(id).get(0).getId());
 
         objBid.placeBid(bid);

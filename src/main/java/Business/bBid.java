@@ -9,6 +9,7 @@ import java.util.ArrayList;
 public class bBid {
     public boolean placeBid(Bids bid) {
         try (var db = new DataConnection()) {
+            System.out.println(bid.getListingId());
             return db.insertObject(bid.getClass(), bid);
         } catch (Exception ex) {
             Logging.HandleError(ex);

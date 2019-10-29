@@ -192,13 +192,6 @@ public class Cars {
         this.customerId = CustomerId;
     }
 
-    @OneToMany(mappedBy = "cars", cascade=CascadeType.ALL)
-    private Set<Listings> listings;
-
-    public Set<Listings> listings() {
-        return this.listings;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
