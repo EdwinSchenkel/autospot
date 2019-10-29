@@ -46,24 +46,20 @@ public class DataConnection implements AutoCloseable, ICanWriteToTextFile {
     }
 
     // Stel de closeables in
-    public DataConnection()
-    {
+    public DataConnection() {
         this.con = new Configuration().configure();
         this.sf = this.con.buildSessionFactory();
         this.session = this.sf.openSession();
     }
 
-    public DataConnection(DataConnection db)
-    {
+    public DataConnection(DataConnection db) {
         this.con = db.getCon();
         this.sf = db.getSf();
         this.session = db.getSession();
     }
 
-    public boolean editObject(Class Class, Object object, int Id)
-    {
-        try
-        {
+    public boolean editObject(Class Class, Object object, int Id) {
+        try {
             // Stel de juiste class in
             this.con.addAnnotatedClass(Class);
 
@@ -76,19 +72,15 @@ public class DataConnection implements AutoCloseable, ICanWriteToTextFile {
 
             // Geen exceptie? Return dan true;
             return true;
-        }
-        catch(Exception ex)
-        {
+        } catch (Exception ex) {
             Logging.HandleError(ex, this);
         }
 
         return false;
     }
 
-    public boolean insertObject(Class Class, Object object)
-    {
-        try
-        {
+    public boolean insertObject(Class Class, Object object) {
+        try {
             // Stel de juiste class in
             this.con.addAnnotatedClass(Class);
 
@@ -98,25 +90,19 @@ public class DataConnection implements AutoCloseable, ICanWriteToTextFile {
             tx.commit();
             // Geen exceptie? Return dan true;
             return true;
-        }
-        catch(Exception ex)
-        {
+        } catch (Exception ex) {
             Logging.HandleError(ex, this);
         }
 
         return false;
     }
 
-    public <T> T getObjectFromQuery(T object, String query)
-    {
+    public <T> T getObjectFromQuery(T object, String query) {
         var em = this.sf.createEntityManager();
-        try
-        {
+        try {
             TypedQuery<T> tq = (TypedQuery<T>) em.createQuery(query, object.getClass());
             return tq.getSingleResult();
-        }
-        catch (Exception ex)
-        {
+        } catch (Exception ex) {
             ex.printStackTrace();
             Logging.HandleError(ex, this);
         }
@@ -124,16 +110,12 @@ public class DataConnection implements AutoCloseable, ICanWriteToTextFile {
         return null;
     }
 
-    public <T> ArrayList<T> getListFromQuery(T object, String query)
-    {
+    public <T> ArrayList<T> getListFromQuery(T object, String query) {
         var em = this.sf.createEntityManager();
-        try
-        {
+        try {
             TypedQuery<T> tq = (TypedQuery<T>) em.createQuery(query, object.getClass());
             return (ArrayList<T>) tq.getResultList();
-        }
-        catch (Exception ex)
-        {
+        } catch (Exception ex) {
             ex.printStackTrace();
             Logging.HandleError(ex, this);
         }
@@ -141,11 +123,9 @@ public class DataConnection implements AutoCloseable, ICanWriteToTextFile {
         return new ArrayList<>();
     }
 
-    public boolean deleteItem(Object object)
-    {
-        try
-        {
-            if(object == null) return false;
+    public boolean deleteItem(Object object) {
+        try {
+            if (object == null) return false;
             // Stel de juiste class in
             this.con.addAnnotatedClass(object.getClass());
 
@@ -155,9 +135,7 @@ public class DataConnection implements AutoCloseable, ICanWriteToTextFile {
             tx.commit();
             // TODO: controleren of item ook echt uit db is
             return true;
-        }
-        catch (Exception ex)
-        {
+        } catch (Exception ex) {
             ex.printStackTrace();
             Logging.HandleError(ex, this);
         }
@@ -165,20 +143,17 @@ public class DataConnection implements AutoCloseable, ICanWriteToTextFile {
         return false;
     }
 
-    private void WriteMessageToLogging(String message)
-    {
+    private void WriteMessageToLogging(String message) {
         fwHelper = new FileWriterHelper();
 
         try {
             var file = OpenFile("dataconnection.txt");
             var currentContent = fwHelper.FileContentToString(file);
             String msg = new Date() + " | MESSAGE : " + message + "\n";
-            if(currentContent != null)
+            if (currentContent != null)
                 msg = currentContent + msg;
             WriteToFile(file, msg);
-        }
-        catch (Exception ex)
-        {
+        } catch (Exception ex) {
             ex.printStackTrace();
         }
 
@@ -192,7 +167,7 @@ public class DataConnection implements AutoCloseable, ICanWriteToTextFile {
 
     @Override
     public File OpenFile(String fileName) throws IOException {
-        if(fwHelper == null) return null;
+        if (fwHelper == null) return null;
 
         return fwHelper.OpenFile(fileName);
     }

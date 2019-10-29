@@ -19,7 +19,7 @@ public class bUser
         {
             if(user.getUserName() != null && user.getUserPassword() != null && user.getUserMail() != null)
             {
-                var checkUserName = db.getObjectFromQuery(new Users(), "SELECT u FROM Users u WHERE name = '" + user.getUserName() + "'") == null;
+                var checkUserName = db.getListFromQuery(new Users(), "SELECT u FROM Users u WHERE name = '" + user.getUserName() + "'").size() == 0;
 
                 if(!checkUserName) {
                     throw new UserRegistrationException();

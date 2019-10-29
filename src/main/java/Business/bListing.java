@@ -95,14 +95,13 @@ public class bListing
     {
         try (var db = new DataConnection())
         {
-            var item = db.getListFromQuery(new Listings(), "SELECT l FROM Listings l WHERE carId = " + id + " ORDER BY id DESC");
-            return item;
+            return db.getListFromQuery(new Listings(), "SELECT l FROM Listings l WHERE carId = " + id + " ORDER BY id DESC");
         }
         catch (Exception ex)
         {
             Logging.HandleError(ex);
         }
 
-        return new ArrayList<Listings>();
+        return new ArrayList<>();
     }
 }

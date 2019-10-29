@@ -1,25 +1,24 @@
 package Controllers;
 
+import Business.bBid;
 import Business.bCar;
 import Business.bListing;
 import Business.bUser;
-import Exceptions.NonExistantUserException;
+import Models.Bids;
 import Models.Cars;
-import Models.Listings;
 import Models.Users;
 import Support.Gui.StageManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.net.URL;
 import java.sql.Date;
-import java.sql.SQLOutput;
 import java.util.ResourceBundle;
 
 public class HomeController implements Initializable {
@@ -28,34 +27,54 @@ public class HomeController implements Initializable {
     private Cars car2;
     private Cars car3;
 
-    @FXML private Button logoutButton;
+    @FXML
+    private Button logoutButton;
 
-    @FXML private Label carName1;
-    @FXML private Label carName2;
-    @FXML private Label carName3;
+    @FXML
+    private Label carName1;
+    @FXML
+    private Label carName2;
+    @FXML
+    private Label carName3;
 
-    @FXML private Label carKleur1;
-    @FXML private Label carKleur2;
-    @FXML private Label carKleur3;
+    @FXML
+    private Label carKleur1;
+    @FXML
+    private Label carKleur2;
+    @FXML
+    private Label carKleur3;
 
-    @FXML private Label carVarnish1;
-    @FXML private Label carVarnish2;
-    @FXML private Label carVarnish3;
+    @FXML
+    private Label carVarnish1;
+    @FXML
+    private Label carVarnish2;
+    @FXML
+    private Label carVarnish3;
 
-    @FXML private Label carType1;
-    @FXML private Label carType2;
-    @FXML private Label carType3;
+    @FXML
+    private Label carType1;
+    @FXML
+    private Label carType2;
+    @FXML
+    private Label carType3;
 
-    @FXML private Label currentUsername;
+    @FXML
+    private Label currentUsername;
 
-    @FXML private Label listingsCar1;
-    @FXML private Label listingsCar2;
-    @FXML private Label listingsCar3;
+    @FXML
+    private Label listingsCar1;
+    @FXML
+    private Label listingsCar2;
+    @FXML
+    private Label listingsCar3;
 
 
-    @FXML private TextField listingPrice1;
-    @FXML private TextField listingPrice2;
-    @FXML private TextField listingPrice3;
+    @FXML
+    private TextField listingPrice1;
+    @FXML
+    private TextField listingPrice2;
+    @FXML
+    private TextField listingPrice3;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -76,33 +95,28 @@ public class HomeController implements Initializable {
     }
 
 
-
-    public void postListing1(ActionEvent event)
-    {
-        this.postListing(car1.getId(), listingPrice1.getText());
+    public void postListing1(ActionEvent event) {
+        this.doBid(car1.getId(), listingPrice1.getText());
     }
 
-    public void postListing2(ActionEvent event)
-    {
-        this.postListing(car2.getId(), listingPrice2.getText());
+    public void postListing2(ActionEvent event) {
+        this.doBid(car2.getId(), listingPrice2.getText());
     }
 
-    public void postListing3(ActionEvent event)
-    {
-        this.postListing(car3.getId(), listingPrice3.getText());
+    public void postListing3(ActionEvent event) {
+        this.doBid(car3.getId(), listingPrice3.getText());
     }
 
-    private void postListing(int id, String price)
-    {
-        var listings = new bListing();
+    private void doBid(int id, String price) {
+        var objBid = new bBid();
 
-        var listing = new Listings();
-        listing.setPrice(Double.valueOf(price));
-        listing.setCarId(id);
-        listing.setExpirationDate(new Date(1572186770));
-        listing.setPlacementDate(new Date(1572186770));
+        var bid = new Bids();
+        bid.setDate(new Date(System.currentTimeMillis()));
+        bid.setStatus(0);
+        bid.setPrice(new BigDecimal(price));
+        bid.setListingId(new bListing().getMostRecentByCarId(id).get(0).getId());
 
-        listings.addListing(listing);
+        objBid.placeBid(bid);
 
         updateUi();
     }
@@ -119,8 +133,7 @@ public class HomeController implements Initializable {
         }
     }
 
-    private void updateUi()
-    {
+    private void updateUi() {
         carName1.setText(car1.getBrand());
         carName2.setText(car2.getBrand());
         carName3.setText(car3.getBrand());
@@ -160,7 +173,4 @@ public class HomeController implements Initializable {
             listingsCar3.setText("Nog geen listing");
         }
     }
-
-
-
 }
