@@ -4,13 +4,13 @@ import Models.Listings;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.math.BigDecimal;
 import java.sql.Date;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class bListingTest {
     private bListing objListing;
+
     @BeforeEach
     void setUp() {
         objListing = new bListing();
@@ -72,12 +72,11 @@ class bListingTest {
 
         // Act
         var result = objListing.getListingByCarType(type);
-        if(result.size() > 0) {
-            for(var rec : result){
-                if(!objCar.getCar(rec.getCarId()).getType().equals(type)) expect = false;
+        if (result.size() > 0) {
+            for (var rec : result) {
+                if (!objCar.getCar(rec.getCarId()).getType().equals(type)) expect = false;
             }
-        }
-        else expect = false;
+        } else expect = false;
 
         // Assert
         assertTrue(expect);

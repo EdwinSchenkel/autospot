@@ -12,6 +12,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 class bBidTest {
     private bBid objBid;
     private bUser objbUser;
+
     @BeforeEach
     void setUp() {
         objBid = new bBid();
@@ -19,10 +20,9 @@ class bBidTest {
         try {
 
             objbUser.loginUser("Test", "testPw");
-        }
-         catch (Exception e) {
+        } catch (Exception e) {
 
-         }
+        }
     }
 
     @Test

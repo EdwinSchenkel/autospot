@@ -1,12 +1,7 @@
 package Controllers;
 
-import Business.bCar;
-import Business.bListing;
 import Business.bUser;
-import Exceptions.NonExistantUserException;
 import Exceptions.UserRegistrationException;
-import Models.Cars;
-import Models.Listings;
 import Models.Users;
 import Support.Gui.StageManager;
 import javafx.event.ActionEvent;
@@ -14,25 +9,27 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
-import javax.swing.*;
 import java.io.IOException;
 import java.net.URL;
-import java.sql.SQLOutput;
 import java.util.Date;
 import java.util.ResourceBundle;
 
 public class RegistratieController implements Initializable {
 
-    @FXML private TextField usernameFieldRegistratie;
-    @FXML private TextField passwordFieldRegistratie;
-    @FXML private TextField emailFieldRegistratie;
+    @FXML
+    private TextField usernameFieldRegistratie;
+    @FXML
+    private TextField passwordFieldRegistratie;
+    @FXML
+    private TextField emailFieldRegistratie;
 
-    @FXML private Button registratieSubmitknop;
+    @FXML
+    private Button registratieSubmitknop;
 
-    @FXML private Button backToLoginButton;
+    @FXML
+    private Button backToLoginButton;
 
     protected bUser userRepository;
 
@@ -43,7 +40,7 @@ public class RegistratieController implements Initializable {
     }
 
     @FXML
-    protected void registratieSubmitknop(ActionEvent event){
+    protected void registratieSubmitknop(ActionEvent event) {
 
 
     }
@@ -68,9 +65,9 @@ public class RegistratieController implements Initializable {
     }
 
     @FXML
-    public void backToLoginScreen(ActionEvent event){
+    public void backToLoginScreen(ActionEvent event) {
 
-        try{
+        try {
 
             StageManager.getStage().setScene(StageManager.scene(StageManager.LOGIN_SCENE));
         } catch (IOException e) {
@@ -78,8 +75,7 @@ public class RegistratieController implements Initializable {
         }
     }
 
-    private void showIncorrectUsernameDialog()
-    {
+    private void showIncorrectUsernameDialog() {
         Alert alert = new Alert(Alert.AlertType.WARNING);
         alert.setTitle("Oops");
         alert.setHeaderText("Oops");

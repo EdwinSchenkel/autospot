@@ -9,6 +9,7 @@ import static org.junit.jupiter.api.Assertions.assertNull;
 class bCarTest {
     private bUser objbUser;
     private bCar objCar;
+
     @BeforeEach
     void setUp() {
         objCar = new bCar();
@@ -79,8 +80,8 @@ class bCarTest {
         var item = objCar.getAllCars();
         var filter = "Rood";
         int amount = 0;
-        for(var rec : item)
-            if(rec.getColor().equals(filter)) amount++;
+        for (var rec : item)
+            if (rec.getColor().equals(filter)) amount++;
 
         // Act
         var filteredList = objCar.getFilteredCars(filter);

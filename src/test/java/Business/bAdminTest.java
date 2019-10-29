@@ -10,29 +10,30 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class bAdminTest {
     private bAdmin objbAdmin;
     private bUser objbUser;
+
     @BeforeEach
     void setUp() {
         objbAdmin = new bAdmin();
         objbUser = new bUser();
         try {
             objbUser.loginUser("Test", "testPw");
-        } catch(Exception e) {
+        } catch (Exception e) {
 
         }
     }
 
     @Test
     void editUser() {
-            // Arrange
-            var item = objbUser.getUser(2);
-            var newName = UUID.randomUUID().toString();
+        // Arrange
+        var item = objbUser.getUser(2);
+        var newName = UUID.randomUUID().toString();
 
-            // Act
-            item.setUserName(newName);
-            objbAdmin.editUser(item);
-            var newItem = objbUser.getUser(2);
-            // Assert
-            assertEquals(newName, newItem.getUserName());
+        // Act
+        item.setUserName(newName);
+        objbAdmin.editUser(item);
+        var newItem = objbUser.getUser(2);
+        // Assert
+        assertEquals(newName, newItem.getUserName());
     }
 
     @Test
@@ -42,7 +43,7 @@ class bAdminTest {
 
         // Act
         boolean result = false;
-        if(item != null)
+        if (item != null)
             result = objbAdmin.deleteUser(item.getId());
 
         // Assert
@@ -56,10 +57,10 @@ class bAdminTest {
 
         // Act
         boolean result = false;
-        if(item != null)
+        if (item != null)
             result = objbAdmin.isAdmin(item.getId());
 
         // Assert
-         assertEquals(true, result);
+        assertEquals(true, result);
     }
 }

@@ -9,6 +9,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 class bCustomerTest {
     private bCustomer objCust;
+
     @BeforeEach
     void setUp() {
         objCust = new bCustomer();

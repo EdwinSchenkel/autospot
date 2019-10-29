@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 
 class bCompanyTest {
     private bCompany objComp;
+
     @BeforeEach
     void setUp() {
         objComp = new bCompany();
