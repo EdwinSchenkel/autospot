@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="519.0" prefWidth="857.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.HomeController">
+   <children>
+      <ImageView fitHeight="137.0" fitWidth="121.0" layoutX="434.0" layoutY="92.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="https://placehold.it/150" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="137.0" fitWidth="121.0" layoutX="45.0" layoutY="92.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="https://placehold.it/150" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="137.0" fitWidth="121.0" layoutX="240.0" layoutY="92.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="https://placehold.it/150" />
+         </image>
+      </ImageView>
+      <Label fx:id="carName1" layoutX="45.0" layoutY="229.0" prefHeight="17.0" prefWidth="75.0" text="Label" />
+      <Label fx:id="carName3" layoutX="434.0" layoutY="229.0" prefHeight="17.0" prefWidth="75.0" text="Label" />
+      <Label fx:id="carName2" layoutX="240.0" layoutY="229.0" prefHeight="17.0" prefWidth="75.0" text="Label" />
+      <TextField fx:id="listingPrice1" layoutX="31.0" layoutY="261.0" />
+      <TextField fx:id="listingPrice3" layoutX="420.0" layoutY="262.0" />
+      <TextField fx:id="listingPrice2" layoutX="226.0" layoutY="262.0" />
+      <Button layoutX="31.0" layoutY="304.0" mnemonicParsing="false" onAction="#postListing1" text="Post bod" />
+      <Button layoutX="420.0" layoutY="304.0" mnemonicParsing="false" onAction="#postListing3" text="Post bod" />
+      <Button layoutX="226.0" layoutY="304.0" mnemonicParsing="false" onAction="#postListing2" text="Post bod" />
+      <Label fx:id="listingsCar1" layoutX="138.0" layoutY="229.0" text="Label" />
+      <Label fx:id="listingsCar3" layoutX="527.0" layoutY="229.0" prefHeight="17.0" prefWidth="28.0" text="Label" />
+      <Label fx:id="listingsCar2" layoutX="333.0" layoutY="229.0" text="Label" />
+      <Button fx:id="logoutButton" layoutX="769.0" layoutY="32.0" mnemonicParsing="false" onAction="#logout" text="Log uit" />
+      <Label fx:id="carKleur1" layoutX="138.0" layoutY="44.0" text="Label" />
+      <Label fx:id="carKleur2" layoutX="333.0" layoutY="44.0" text="Label" />
+      <Label fx:id="carKleur3" layoutX="527.0" layoutY="44.0" text="Label" />
+      <Label layoutX="45.0" layoutY="44.0" text="Kleur:" />
+      <Label layoutX="240.0" layoutY="44.0" text="Kleur:" />
+      <Label layoutX="434.0" layoutY="46.0" text="Kleur:" />
+      <Label layoutX="46.0" layoutY="63.0" text="Lak:" />
+      <Label layoutX="240.0" layoutY="65.0" text="Lak:" />
+      <Label layoutX="434.0" layoutY="65.0" text="Lak:" />
+      <Label fx:id="carVarnish1" layoutX="138.0" layoutY="63.0" text="Label" />
+      <Label fx:id="carVarnish2" layoutX="333.0" layoutY="63.0" text="Label" />
+      <Label fx:id="carVarnish3" layoutX="527.0" layoutY="65.0" text="Label" />
+      <Label layoutX="43.0" layoutY="24.0" text="Type:" />
+      <Label layoutX="239.0" layoutY="24.0" text="Type:" />
+      <Label layoutX="433.0" layoutY="24.0" text="Type:" />
+      <Label fx:id="carType1" layoutX="138.0" layoutY="24.0" text="Label" />
+      <Label fx:id="carType2" layoutX="333.0" layoutY="24.0" text="Label" />
+      <Label fx:id="carType3" layoutX="527.0" layoutY="24.0" text="Label" />
+      <Label layoutX="660.0" layoutY="463.0" text="Ingelogd als:" />
+      <Label fx:id="currentUsername" layoutX="749.0" layoutY="463.0" text="Label" />
+   </children>
+</AnchorPane>

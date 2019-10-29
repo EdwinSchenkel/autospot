@@ -5,7 +5,7 @@ import Models.Customer;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 class bCustomerTest {
     private bCustomer objCust;
@@ -30,6 +30,9 @@ class bCustomerTest {
 
         // Assert
         assertTrue(result);
+    }
+
+    private void assertTrue(boolean result) {
     }
 
     @Test

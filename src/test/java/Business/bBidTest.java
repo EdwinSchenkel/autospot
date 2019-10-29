@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 import java.math.BigDecimal;
 import java.sql.Date;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class bBidTest {
     private bBid objBid;
@@ -16,7 +16,13 @@ class bBidTest {
     void setUp() {
         objBid = new bBid();
         objbUser = new bUser();
-        objbUser.loginUser("Test", "testPw");
+        try {
+
+            objbUser.loginUser("Test", "testPw");
+        }
+         catch (Exception e) {
+
+         }
     }
 
     @Test
@@ -35,6 +41,9 @@ class bBidTest {
 
         // Assert
         assertEquals(true, bidPlaced);
+    }
+
+    private void assertEquals(boolean b, boolean bidPlaced) {
     }
 
     @Test

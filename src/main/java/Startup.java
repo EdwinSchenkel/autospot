@@ -1,23 +1,50 @@
 import Business.bAdmin;
 import Business.bUser;
-import Helpers.FileWriterHelper;
-import com.fasterxml.jackson.databind.ObjectMapper;
 
-import java.util.ArrayList;
-import java.util.Arrays;
+import Support.Gui.StageManager;
+import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
 
-public class Startup {
-    public static void main(String[] args)
+
+public class Startup extends Application {
+
+    public static void main (String[] args) {
+        launch(args);
+    }
+
+    public void start(Stage stage)
     {
-        System.out.println("Start");
-        var usr = new bUser();
-        usr.loginUser("Test", "testPw");
-        var admin = new bAdmin();
-        admin.deleteUser(51);
-        addUser();
-        System.out.println("Stop");
+        StageManager.setStage(stage);
+
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("/fxml/login.fxml"));
+            stage.setTitle("AUTOSPOT");
+            stage.setScene(new Scene(root));
+            stage.show();
+        } catch(Exception e) {
+            System.out.println("AutoSpot testing");
+            System.out.println(e);
+        }
+
+
+
+
+
+//        System.out.println("Start");
+//        var usr = new bUser();
+//        usr.loginUser("Test", "testPw");
+//        var admin = new bAdmin();
+//        admin.deleteUser(53);
+//        addUser();
+//        System.out.println("Stop");
+
 
     }
+
+
 
     public static void addUser()
     {

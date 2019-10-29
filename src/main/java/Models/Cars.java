@@ -3,6 +3,9 @@ package Models;
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.sql.Date;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "cars", schema = "autospot", catalog = "")
@@ -187,6 +190,13 @@ public class Cars {
 
     public void setCustomerId(int CustomerId) {
         this.customerId = CustomerId;
+    }
+
+    @OneToMany(mappedBy = "cars", cascade=CascadeType.ALL)
+    private Set<Listings> listings;
+
+    public Set<Listings> listings() {
+        return this.listings;
     }
 
     @Override

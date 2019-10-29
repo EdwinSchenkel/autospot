@@ -1,5 +1,7 @@
 package Business;
 
+import Exceptions.NonExistantUserException;
+import Exceptions.UserRegistrationException;
 import Helpers.DataConnection;
 import Logging.Logging;
 import Models.Users;
@@ -11,7 +13,7 @@ public class bUser
 {
     public static Users UserLoggedIn;
 
-    public boolean registerUser(Users user, String message)
+    public boolean registerUser(Users user, String message) throws UserRegistrationException
     {
         try (var db = new DataConnection())
         {
@@ -19,7 +21,9 @@ public class bUser
             {
                 var checkUserName = db.getObjectFromQuery(new Users(), "SELECT u FROM Users u WHERE name = '" + user.getUserName() + "'") == null;
 
-                if(!checkUserName) return false;
+                if(!checkUserName) {
+                    throw new UserRegistrationException();
+                }
 
                 user.setActief(true);
                 user.setDatumGeregistreerd(new Date());
@@ -29,22 +33,30 @@ public class bUser
             {
                 message = "Niet alle benodigde informatie is aanwezig! | bUser.registerUser";
                 Logging.LogMessage(message);
-                return false;
+                throw new UserRegistrationException();
             }
         }
         catch(Exception ex)
         {
+            if (ex instanceof UserRegistrationException) {
+                throw new UserRegistrationException();
+            }
+
             Logging.HandleError(ex);
         }
 
         return false;
     }
 
-    public boolean loginUser(String userName, String password)
+    public boolean loginUser(String userName, String password) throws NonExistantUserException
     {
         try(var db = new DataConnection())
         {
             var user = db.getObjectFromQuery(new Users(), "SELECT u FROM Users u WHERE name = '" + userName + "'");
+
+            if (user == null) {
+                throw new NonExistantUserException();
+            }
 
             if(password.equals(user.getUserPassword()))
             {
@@ -56,7 +68,15 @@ public class bUser
         }
         catch (Exception ex)
         {
-            Logging.HandleError(ex);
+            if (ex instanceof NonExistantUserException) {
+                throw new NonExistantUserException();
+            }
+
+
+            System.out.println(" BEGIN ERROR ");
+//            System.out.println(ex);
+            ex.printStackTrace();
+            System.out.println(" STOP ERROR ");
         }
 
         return false;

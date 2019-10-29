@@ -3,6 +3,7 @@ package Business;
 import Helpers.DataConnection;
 import Logging.Logging;
 import Models.Bids;
+
 import java.util.ArrayList;
 
 public class bBid

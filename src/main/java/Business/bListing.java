@@ -3,6 +3,7 @@ package Business;
 import Helpers.DataConnection;
 import Logging.Logging;
 import Models.Listings;
+
 import java.util.ArrayList;
 
 public class bListing
@@ -88,5 +89,20 @@ public class bListing
         {
             Logging.HandleError(ex);
         }
+    }
+
+    public ArrayList<Listings> getMostRecentByCarId(int id)
+    {
+        try (var db = new DataConnection())
+        {
+            var item = db.getListFromQuery(new Listings(), "SELECT l FROM Listings l WHERE carId = " + id + " ORDER BY id DESC");
+            return item;
+        }
+        catch (Exception ex)
+        {
+            Logging.HandleError(ex);
+        }
+
+        return new ArrayList<Listings>();
     }
 }

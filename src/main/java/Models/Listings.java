@@ -1,6 +1,9 @@
 package Models;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import java.math.BigDecimal;
 import java.sql.Date;
 
@@ -8,10 +11,17 @@ import java.sql.Date;
 @Table(name = "listings")
 public class Listings {
     private int id;
-    private BigDecimal price;
+    private double price;
     private Date placementDate;
     private Date expirationDate;
     private int carId;
+
+    public Listings(String s) {
+    }
+
+    public Listings() {
+
+    }
 
     @Id
     @Column(name = "id")
@@ -24,11 +34,11 @@ public class Listings {
     }
 
     @Column(name = "price")
-    public BigDecimal getPrice() {
+    public double getPrice() {
         return price;
     }
 
-    public void setPrice(BigDecimal price) {
+    public void setPrice(double price) {
         this.price = price;
     }
 
@@ -67,7 +77,7 @@ public class Listings {
         Listings that = (Listings) o;
 
         if (id != that.id) return false;
-        if (price != null ? !price.equals(that.price) : that.price != null) return false;
+//        if (price != null ? !price.equals(that.price) : that.price != null) return false;
         if (placementDate != null ? !placementDate.equals(that.placementDate) : that.placementDate != null)
             return false;
         if (expirationDate != null ? !expirationDate.equals(that.expirationDate) : that.expirationDate != null)
@@ -79,7 +89,7 @@ public class Listings {
     @Override
     public int hashCode() {
         int result = id;
-        result = 31 * result + (price != null ? price.hashCode() : 0);
+//        result = 31 * result + (price != null ? price.hashCode() : 0);
         result = 31 * result + (placementDate != null ? placementDate.hashCode() : 0);
         result = 31 * result + (expirationDate != null ? expirationDate.hashCode() : 0);
         return result;

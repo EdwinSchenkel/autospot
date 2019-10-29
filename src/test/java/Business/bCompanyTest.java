@@ -5,8 +5,6 @@ import Models.Companies;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 class bCompanyTest {
     private bCompany objComp;
     @BeforeEach
@@ -30,6 +28,9 @@ class bCompanyTest {
         assertTrue(result);
     }
 
+    private void assertTrue(boolean result) {
+    }
+
     @Test
     void editCompany() {
         // Arrange
@@ -43,5 +44,8 @@ class bCompanyTest {
 
         // Assert
         assertEquals(newValue, getCompany.getAddress().getAddress());
+    }
+
+    private void assertEquals(String newValue, String address) {
     }
 }

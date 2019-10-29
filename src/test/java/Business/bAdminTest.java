@@ -1,13 +1,11 @@
 package Business;
 
-import Helpers.DataConnection;
-import Models.Users;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.UUID;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class bAdminTest {
     private bAdmin objbAdmin;
@@ -16,7 +14,11 @@ class bAdminTest {
     void setUp() {
         objbAdmin = new bAdmin();
         objbUser = new bUser();
-        objbUser.loginUser("Test", "testPw");
+        try {
+            objbUser.loginUser("Test", "testPw");
+        } catch(Exception e) {
+
+        }
     }
 
     @Test
